@@ -2,6 +2,8 @@
     "use strict";
     // window scroll function
 
+        $('.note-editor').append("<div class='progressbar'><div class='scrollbar'></div></div>");
+        
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('.scrollup').fadeIn();
@@ -103,3 +105,12 @@ $(window).resize(function() {
     });
 
 });
+
+
+if(document.getElementById('editor') != null ){
+document.getElementById('editor').addEventListener("paste", function(e) {
+    e.preventDefault();
+    var text = e.clipboardData.getData("text/plain");
+    document.execCommand("insertHTML", false, text);
+});
+}

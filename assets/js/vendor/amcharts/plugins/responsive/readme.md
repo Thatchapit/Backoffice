@@ -301,7 +301,7 @@ no responsive rules will be applied to them.
 
 ## Demos
 
-Run the index.html in the subdirectory /examples. It will allow viewing misc
+Run the index.php in the subdirectory /examples. It will allow viewing misc
 chart types at various resolutions.
 
 

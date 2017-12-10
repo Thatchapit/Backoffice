@@ -2566,6 +2566,23 @@ Text Editer
 
 -------------------------------------------------*/
 
+.editor{
+     max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate;
+    padding: 4px;
+    box-sizing: content-box;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    overflow: auto;
+    outline: none;
+    border: 1px solid #ccc;
+}
 #editor {
     max-height: 250px;
     height: 250px;
@@ -3821,3 +3838,5 @@ WIDGETS
 .glyphicon.fa {
   font-family: "FontAwesome";
 }
+div.progressbar{display:none;height:3px;background:#C4C4C4;padding:0px;}
+div.progressbar .scrollbar{display:block;width:50%;height:3px;background:red;}

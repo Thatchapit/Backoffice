@@ -129,11 +129,11 @@
                 <div class="page-content">
                     <div class="row wrapper border-bottom page-heading">
                         <div class="col-lg-12">
-                            <h2>News Manage</h2>
+                            <h2>Knowledge Manage</h2>
                             <ol class="breadcrumb">
                                 <li> <a href="index.php">Home</a> </li>
-                                <li> <a href="news_view.php">News</a> </li>
-                                <li class="active"> <a>News Manage</a> </li>
+                                <li> <a href="our_project_view.php">Knowledge</a> </li>
+                                <li class="active"> <a>Knowledge Manage</a> </li>
 
                             </ol>
                         </div>
