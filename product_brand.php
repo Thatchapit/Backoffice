@@ -149,6 +149,7 @@
                                                 <hr>
                                                 <form id="form_validation" method="POST" enctype="multipart/form-data">
                                                 <input type="hidden" name="mode" value="add">
+                                                    
                                                     <div class="form-group">
                                                         <label for="Title TH">Title</label>
                                                         <input class="form-control m-t-xxs" name="title_th" placeholder="ระบุ Title" type="text">
@@ -157,8 +158,7 @@
                                                     <div class="form-group">
                                                         <label for="Description">Short Description</label>
                                                         <textarea class="form-control" name="short_description_th" cols="30" rows="10" placeholder="ระบุ Short Description" ></textarea>
-                                                        </td>
-                                                       
+                                                        </td>                                                    
                                                     </div>
             
                                             
