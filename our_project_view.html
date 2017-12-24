@@ -1,14 +1,11 @@
-<?php
-       require_once('assets/PHP-MySQLi-Database-Class-master/MysqliDb.php');
-        require_once('ajax/connect.php');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Backoffice - สินค้าและโปรโมชั่น</title>
+<title>Backoffice - Product Item</title>
 <!-- dataTables -->
 <link href="assets/css/buttons.dataTables.min.css" rel="stylesheet">
 <link href="assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -44,10 +41,10 @@
 </head>
 <body class="page-header-fixed ">
 <div class="page-header navbar navbar-fixed-top">
-    <!-- BEGIN HEADER INNER -->
+   <!-- BEGIN HEADER INNER -->
   <div class="page-header-inner ">
     <!-- BEGIN LOGO -->
-    <div class="page-logo"> <a href="index.html"> <img class="logo-default" alt="logo" src="assets/images/logo.png"> </a> </div>
+       <div class="page-logo"> <a href="index.php" style="padding-top: 7px;"> <img src="images/logo.png" style="height:25px;margin-right: 5px;"> LOYALTY GROUP </a> </div>
     <!-- END LOGO -->
     <div class="library-menu"> <span class="one">-</span> <span class="two">-</span> <span class="three">-</span> </div><div class="top-nev-mobile-togal"><i class="glyphicon glyphicon-cog"></i></div>
  <!-- BEGIN TOP NAVIGATION MENU -->
@@ -56,7 +53,7 @@
                 <div class="hor-menu  hor-menu-light hidden-sm hidden-xs">
                     <ul class="nav navbar-nav">
                         <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
-                        <li class="classic-menu-dropdown active"> <a href="index.html"><i class="icon-user fa-fw"></i></a> </li>
+                        <li class="classic-menu-dropdown active"> <a href="index.php"><i class="icon-user fa-fw"></i></a> </li>
                     </ul>
                 
                 </div>
@@ -64,12 +61,12 @@
       <ul class="nav navbar-nav pull-right">
       
        
-        <!-- START USER LOGIN DROPDOWN -->
-<li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;">  <span class="username username-hide-on-mobile"> Susan Wenscombe</span> <i class="fa fa-angle-down"></i> </a>
+       <!-- START USER LOGIN DROPDOWN -->
+<li class="dropdown dropdown-user"> <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown"  class="dropdown-toggle" href="javascript:;">  <span class="username username-hide-on-mobile"><?php echo "<b>".$_SESSION['username']."</b> (".$_SESSION['hierarchy'].")"; ?></span> <i class="fa fa-angle-down"></i> </a>
           <ul class="dropdown-menu dropdown-menu-default">
        
           
-            <li> <a href="login.html"> <i class="icon-key"></i> Log Out </a> </li>
+            <li> <a href="logout.php"> <i class="icon-key"></i> Log Out </a> </li>
           </ul>
         </li>
         <!-- END USER LOGIN DROPDOWN -->
@@ -84,19 +81,42 @@
   <!-- Start page sidebar wrapper -->
   <div class="page-sidebar-wrapper">
     <div class="page-sidebar">
-      <ul class="page-sidebar-menu  page-header-fixed ">
+       <ul class="page-sidebar-menu  page-header-fixed ">
        
         <li class="active">
 
-             <li class="nav-item"> <a class="nav-link" href="index.php"> <i class="fa fa-home"></i> <span class="title">Home</span> </a></li>
-             <li class="nav-item "> <a class="nav-link" href="about.php"> <i class="fa fa-id-card-o"></i> <span class="title">เกี่ยวกับเรา</span> </a></li>
-             <li class="nav-item"> <a class="nav-link" href="hightlight.php"> <i class="fa fa-star"></i> <span class="title">Hightlight</span> </a></li>
-             <li class="nav-item active"> <a class="nav-link" href="product.php"> <i class="fa fa-shopping-basket "></i> <span class="title">สินค้าและโปรโมชั่น</span> </a></li>
-             <li class="nav-item"> <a class="nav-link" href="store.php"> <i class="fa fa-cubes"></i> <span class="title">ร้านค้า</span> </a></li>
-             <li class="nav-item"> <a class="nav-link" href="news.php"> <i class="fa fa-file-text"></i> <span class="title">ข่าวสาร/ประชาสัมพันธ์</span> </a></li>
-             <li class="nav-item "> <a class="nav-link" href="activity.php"> <i class="fa fa-calendar"></i> <span class="title">กิจกรรม</span> </a></li>
-             <li class="nav-item "> <a class="nav-link" href="join.php"> <i class="fa fa-handshake-o"></i> <span class="title">ร่วมเป็นส่วนหนึ่งกับเรา</span> </a></li>
-             <li class="nav-item"> <a class="nav-link" href="contact.php"> <i class="fa fa-phone"></i> <span class="title">ติดต่อเรา</span> </a></li>      
+             <li class="nav-item "> <a class="nav-link" href="index.php"> <i class="fa fa-home"></i> <span class="title">Home</span> </a></li>
+             <li class="nav-item"> <a class="nav-link nav-toggle" href="data_dictionary.php"> <i class="fa fa-list-alt"></i> <span class="title">Data Dictionary</span></a>
+            </li>
+             <li class="nav-item active"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-cubes"></i> <span class="title">Prdouct</span> <span class="arrow"></span> </a>
+             <ul class="sub-menu">
+               <li class="nav-item"> <a class="nav-link" href="product_category_view.php"> <span class="title">Prdouct Category</span> </a> </li>
+               <li class="nav-item active"> <a class="nav-link" href="product_item_view.php"> <span class="title">Prdouct Items</span> </a> </li>
+            </ul>
+           </li>
+
+           <li class="nav-item"> <a class="nav-link nav-toggle" href="popup.php"> <i class="fa fa-window-maximize"></i> <span class="title">Popup</span> </a>
+          
+            </li>
+
+            <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-file-text-o"></i> <span class="title">Jobs</span><span class="arrow"></span></a>
+            <ul class="sub-menu">
+               <li class="nav-item"> <a class="nav-link" href="jobs_view.php"> <span class="title">Job</span> </a> </li>
+               <li class="nav-item"> <a class="nav-link" href="job_user.php"> <span class="title">Resume</span> </a> </li>
+            </ul>
+            </li>
+
+
+            <li class="nav-item"> <a class="nav-link nav-toggle" href="javascript:;"> <i class="fa fa-gear"></i> <span class="title">Setting</span> <span class="arrow"></span> </a>
+             <ul class="sub-menu">
+               <li class="nav-item"> <a class="nav-link" href="home_page.php"> <span class="title">Home Page</span> </a> </li>
+               <li class="nav-item"> <a class="nav-link" href="ourstory.php"> <span class="title">Ourstory Page</span> </a> </li>
+               <li class="nav-item"> <a class="nav-link" href="contact.php"> <span class="title">Contact Page</span> </a> </li>
+  <li class="nav-item"> <a class="nav-link" href="meta.php"> <span class="title">Meta & Title</span> </a> </li>
+            </ul>
+           </li>
+
+
 
       </ul>
     </div>
@@ -107,10 +127,10 @@
     <div class="page-content">
       <div class="row wrapper border-bottom page-heading">
         <div class="col-lg-12">
-          <h2>สินค้าและโปรโมชั่น </h2>
+          <h2>Product Item</h2>
           <ol class="breadcrumb">
-            <li> <a href="index.html">Home</a> </li>
-            <li  class="active">  <strong><a>สินค้าและโปรโมชั่น</a> </strong> </li>
+            <li> <a href="index.php">Home</a> </li>
+            <li  class="active"><a>Product Item</a></li>
            
           </ol>
         </div>
@@ -124,8 +144,8 @@
               <div class="ibox-content collapse in">
                 <div class="widgets-container">
                    <div class="align-right">
-                             <a href="productsetting.php"><button type="button" class="btn btn-primary waves-effect">
-                              สร้างหัวข้อใหม่
+                             <a href="product_item.php"><button type="button" class="btn btn-primary waves-effect">
+                              Create Product Item
                              </button></a>
                             </div>
                             <br/>
@@ -133,52 +153,40 @@
                     <table id="example" class="table  responsive nowrap table-bordered" cellspacing="0" width="100%">
                       <thead>
                                         <tr>
-                                            <th>ลำดับ</th>
-                                            <th>ภาพประกอบ</th>
-                                            <th>เพิ่มภาพ</th>
-                                            <th>หัวข้อ</th>
-                                            <th>ประเภท</th>
-                                            <th>สร้างเมื่อ</th>
-                                            <th>เครื่องมือ</th>
+                                            <th style="text-align: center;">No.</th>
+                                            <th>Image</th>
+                                            <th>Title</th>
+                                            
+                                            <th>Add Image</th>
+                                            <th>Create Date</th>
+                                            <th>Tools</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ลำดับ</th>
-                                            <th>ภาพประกอบ</th>
-                                            <th>เพิ่มภาพ</th>
-                                            <th>หัวข้อ</th>
-                                            <th>ประเภท</th>
-                                            <th>สร้างเมื่อ</th>
-                                            <th>เครื่องมือ</th>
+                                        <th style="text-align: center;">No.</th>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                       
+                                        <th>Add Image</th>
+                                        <th>Create Date</th>
+                                        <th>Tools</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
 
-                                        <?php
-
-                                        $db->where('is_del',0);
-                                            $db->orderBy("create_date","DESC");
-                                            
-                                            $results = $db->get('product_promotion');
-                                            for ($i=0; $i < count($results) ; $i++) { 
-                                          
-                                          
-                                        ?>
-                                
                                         <tr>
-                                            <td><?php echo  $i+1 ?></td>
-                                            <td><img src="images/product/desktop/<?php echo $results[$i]['desktop_img'] ?>" alt="" height="150"></td>
-                                            <td><!-- Add Image icon by Icons8 -->
-<a href="productsetting_img.php?id=<?php echo  $results[$i]['id'] ?>"><img class="icon icons8-Add-Image" width="40" height="40" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAA70lEQVRoQ+1Z0RXDIAiMa3SejJKxOkrn6RrNj36UvrxDMYL28osRjgMETdvkX5rc/o0AvBlMj9fz422ERT8BWLzX49/1GHjvR+jKJHP2h4FlAESrTsWxagaWAeAdUsWRzQz8LQAZgq2OcGOAAPIxTQassVv6Hes+w6sQc4A5kCe1q9jt3WogPd1zgADEOEYGZL2WJ2Dt/MoyyjIKyigKKYYQQ4gh9H1pPF07jZJcK3ebyLQGonVmAEjBKHlzNzrKQKSnGgDa0Euuvhv1MhDphQDQBtHk673QRPMwsmd+BhDC6PLQD3oa5xGAxkt3rjkB728B9x3Qi0sAAAAASUVORK5CYII="></a></td>
-                                            <td><?php echo $results[$i]['title'] ?></td>
-                                            <td><?php echo $results[$i]['type'] != 0 ? "โปรโมชั่น" : "สินค้า"  ?></td>
-                                            <td><?php echo $results[$i]['create_date'] ?></td>
-                                            <td><a href="productsetting.php?id=<?php echo  $results[$i]['id'] ?>"><button type="button" class="btn btn-warning waves-effect"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;แก้ไข</button></a>&nbsp;&nbsp;<button type="button" data-type="cancel" data-id="<?php echo  $results[$i]['id'] ?>" class=" del_btn btn btn-danger waves-effect"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;ลบ</button></td>
+                                            <td style="text-align: center;"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><a href="#"><img class="icon icons8-Add-Image" height="40" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAA70lEQVRoQ+1Z0RXDIAiMa3SejJKxOkrn6RrNj36UvrxDMYL28osRjgMETdvkX5rc/o0AvBlMj9fz422ERT8BWLzX49/1GHjvR+jKJHP2h4FlAESrTsWxagaWAeAdUsWRzQz8LQAZgq2OcGOAAPIxTQassVv6Hes+w6sQc4A5kCe1q9jt3WogPd1zgADEOEYGZL2WJ2Dt/MoyyjIKyigKKYYQQ4gh9H1pPF07jZJcK3ebyLQGonVmAEjBKHlzNzrKQKSnGgDa0Euuvhv1MhDphQDQBtHk673QRPMwsmd+BhDC6PLQD3oa5xGAxkt3rjkB728B9x3Qi0sAAAAASUVORK5CYII="></a></td>
+                                            
+                                            <td></td>
+                                            <td><button type="button" class="btn btn-warning waves-effect" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>&nbsp;&nbsp;<button type="button" data-type="cancel" data-id="" class=" del_btn btn btn-danger waves-effect"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                                             
                                         </tr>
                                   
-                                            <?php } ?>
+                                         
                                     </tbody>
                     </table>
                   </div>
@@ -191,15 +199,8 @@
                         
 <!-- start footer -->
 <div class="footer">
-        <div class="pull-right">
-          <ul class="list-inline">
-            <li><a title="" href="index.html">Dashboard</a></li>
-            <li><a title="" href="mailbox.html"> Inbox </a></li>
-            <li><a title="" href="blog.html">Blog</a></li>
-            <li><a title="" href="contacts.html">Contacts</a></li>
-          </ul>
-        </div>
-        <div> <strong>Copyright</strong> AdminUI Company &copy; 2017 </div>
+  
+        <div> POWER by LOYALTY GROUP</div>
       </div>
     </div>
   </div>
@@ -234,7 +235,7 @@
 <!-- main js -->
 <script src="assets/js/main.js"></script>
 
-   <script src="assets/sweetalert/sweetalert.min.js"></script>
+        <script src="assets/sweetalert/sweetalert.min.js"></script>
 <script>
       
         $(document).ready(function() {
@@ -250,17 +251,43 @@
         }
     });
 
+              $('.check_random').change(function() {
+       var id = $(this).data('id');
+      var url = "ajax/ajax_news.php"; // the script where you handle the form input.
+      var random_status = 0;
+     if($(this).is(":checked")) {
+      random_status = 1;
+     }
+
+  
+
+
+                $.ajax({
+                    url: url ,
+                    data: { 'mode' : 'random','id' : id,'random_status': random_status},
+                    type: 'POST',
+                    success: function (data) {
+                        console.log(data);
+                       // location.reload();
+  
+                    }
+                });
+        
+       
+    });
+
+
           function showConfirmMessage(id) {
     swal({
-        title: "คุณแน่ใจที่จะลบ?",
-        text: "คุณต้องการที่จะลบหัวข้อนี้ใช่ไหม",
+        title: "Are you sure?",
+        text: "You want to delete!.",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
         confirmButtonText: "Yes, delete it!",
         closeOnConfirm: false
     }, function () {
-                        var url = "ajax/ajax_product.php"; // the script where you handle the form input.
+                        var url = "ajax/ajax_product_category.php"; // the script where you handle the form input.
                         
                 $.ajax({
                     url: url ,
